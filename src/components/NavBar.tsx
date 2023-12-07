@@ -1,4 +1,4 @@
-import { Menu } from "antd";
+import { Flex, Menu, Layout } from "antd";
 import type { MenuProps } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,6 +9,8 @@ import {
   faCircleInfo,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+
+const { Header, Content, Footer, Sider } = Layout;
 
 const items: MenuProps["items"] = [
   {
@@ -85,7 +87,30 @@ const items: MenuProps["items"] = [
 const NavBar = () => {
   return (
     <>
-      <Menu mode="horizontal" items={items}></Menu>
+      <Layout>
+        <Header
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "white",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src="./images/DABB-logo-horiz-moyen.jpeg"
+              style={{ height: 50 }}
+            ></img>
+          </div>
+          <Menu mode="horizontal" items={items}></Menu>
+        </Header>
+      </Layout>
     </>
   );
 };

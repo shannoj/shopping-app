@@ -11,15 +11,16 @@ const Food = () => {
           <Card
             hoverable
             style={{
-              width: 240,
-              marginLeft: 150,
+              width: 350,
+              marginLeft: 50,
               marginTop: 50,
               marginBottom: 50,
             }}
             cover={
               <img
+              style={{height: 240}}
                 alt="example"
-                src="./images/istockphoto-938993594-612x612.jpg"
+                src="../images/istockphoto-938993594-612x612.jpg"
               />
             }
           >
@@ -30,8 +31,7 @@ const Food = () => {
           <Card
             hoverable
             style={{
-              width: 240,
-              marginRight: 150,
+              width: 350,
               marginTop: 50,
               marginBottom: 50,
             }}
@@ -39,7 +39,7 @@ const Food = () => {
               <img
                 style={{ height: 240 }}
                 alt="example"
-                src="./images/poznan-poland-oct-28-2021-600nw-2071581119-1"
+                src="../images/poznan-poland-oct-28-2021-600nw-2071581119-1.webp"
               />
             }
           >
@@ -50,8 +50,8 @@ const Food = () => {
           <Card
             hoverable
             style={{
-              width: 240,
-              marginRight: 150,
+              width: 350,
+              marginRight: 50,
               marginTop: 50,
               marginBottom: 50,
             }}
@@ -59,7 +59,7 @@ const Food = () => {
               <img
                 style={{ height: 240 }}
                 alt="example"
-                src="./images/download-1.jpg"
+                src="../images/download-1.jpg"
               />
             }
           >

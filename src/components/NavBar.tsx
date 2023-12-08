@@ -111,7 +111,7 @@ const NavBar = () => {
           >
             <Link to="/">
               <img
-                src="./images/DABB-logo-horiz-moyen.jpeg"
+                src="../images/DABB-logo-horiz-moyen.jpeg"
                 style={{ height: 50 }}
               ></img>
             </Link>

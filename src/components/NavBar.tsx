@@ -1,4 +1,4 @@
-import { Flex, Menu, Layout } from "antd";
+import { Menu, Layout } from "antd";
 import type { MenuProps } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,8 +9,9 @@ import {
   faCircleInfo,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header } = Layout;
 
 const items: MenuProps["items"] = [
   {
@@ -19,7 +20,11 @@ const items: MenuProps["items"] = [
     icon: <FontAwesomeIcon icon={faCircleInfo} />,
   },
   {
-    label: "Produits",
+    label: (
+      <Link to="products" style={{ color: "black" }}>
+        Produits
+      </Link>
+    ),
     key: "Produits",
     icon: <FontAwesomeIcon icon={faBasketShopping} />,
     children: [
@@ -94,6 +99,7 @@ const NavBar = () => {
             justifyContent: "space-between",
             alignItems: "center",
             backgroundColor: "white",
+            width: "100%",
           }}
         >
           <div
@@ -103,12 +109,14 @@ const NavBar = () => {
               justifyContent: "center",
             }}
           >
-            <img
-              src="./images/DABB-logo-horiz-moyen.jpeg"
-              style={{ height: 50 }}
-            ></img>
+            <Link to="/">
+              <img
+                src="./images/DABB-logo-horiz-moyen.jpeg"
+                style={{ height: 50 }}
+              ></img>
+            </Link>
           </div>
-          <Menu mode="horizontal" items={items}></Menu>
+          <Menu theme="light" mode="horizontal" items={items}></Menu>
         </Header>
       </Layout>
     </>

@@ -28,10 +28,18 @@ const items: MenuProps["items"] = [
     key: "Produits",
     icon: <FontAwesomeIcon icon={faBasketShopping} />,
     children: [
-      { label: "Boissons chaudes", key: "boissons chaudes" },
-      { label: "Boissons fraîches", key: "boissons fraîches" },
       {
-        label: "Snacks et Produits fraiche",
+        label: <Link to="products/food/hotdrinks">Boissons chaudes</Link>,
+        key: "boissons chaudes",
+      },
+      {
+        label: <Link to="products/food/colddrinks">Boissons fraîches</Link>,
+        key: "boissons fraîches",
+      },
+      {
+        label: (
+          <Link to="products/food/snacks">Snacks et Produits fraiche</Link>
+        ),
         key: "Snacks et Produits fraiche",
       },
       {

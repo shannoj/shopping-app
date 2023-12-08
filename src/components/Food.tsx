@@ -18,7 +18,7 @@ const Food = () => {
             }}
             cover={
               <img
-              style={{height: 240}}
+                style={{ height: 240 }}
                 alt="example"
                 src="../images/istockphoto-938993594-612x612.jpg"
               />

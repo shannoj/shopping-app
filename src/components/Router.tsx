@@ -3,6 +3,9 @@ import App from "../App";
 import Products from "./Products";
 import Food from "./Food";
 import Machines from "./Machines";
+import HotDrinks from "./HotDrinks";
+import ColdDrinks from "./ColdDrinks";
+import Snacks from "./Snacks";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -17,6 +20,18 @@ const Router = () => {
         {
           path: "products/food",
           element: <Food />,
+        },
+        {
+          path: "products/food/hotdrinks",
+          element: <HotDrinks />,
+        },
+        {
+          path: "products/food/colddrinks",
+          element: <ColdDrinks />,
+        },
+        {
+          path: "products/food/snacks",
+          element: <Snacks />,
         },
         {
           path: "products/machines",

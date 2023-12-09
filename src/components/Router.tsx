@@ -6,6 +6,7 @@ import Machines from "./Machines";
 import HotDrinks from "./HotDrinks";
 import ColdDrinks from "./ColdDrinks";
 import Snacks from "./Snacks";
+import Cart from "./CartCheckout";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const Router = () => {
       path: "/",
       element: <App />,
       children: [
+        {
+          path: "cart",
+          element: <Cart />,
+        },
         {
           path: "products",
           element: <Products />,

@@ -45,6 +45,16 @@ const Router = () => {
     console.log(shoppingCart);
   };
 
+  const removeFromCart = (id: number) => {
+    // Use filter to create a new array without the item with the specified id
+    const updatedCart = shoppingCart.filter((obj) => obj.id !== id);
+
+    // Set the new array as the shoppingCart state
+    setShoppingCart(updatedCart);
+
+    console.log(updatedCart);
+  };
+
   console.log(error);
   const router = createBrowserRouter([
     {
@@ -53,7 +63,9 @@ const Router = () => {
       children: [
         {
           path: "cart",
-          element: <Cart data={shoppingCart} />,
+          element: (
+            <Cart data={shoppingCart} removeButtonClick={removeFromCart} />
+          ),
         },
         {
           path: "products",

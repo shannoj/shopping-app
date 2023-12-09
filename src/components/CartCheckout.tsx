@@ -1,4 +1,4 @@
-import { Card, Flex } from "antd";
+import { Card, Flex, Image, Button } from "antd";
 
 interface Data {
   image: string;
@@ -9,38 +9,26 @@ interface Data {
 
 interface CartProps {
   data: Data[];
+  removeButtonClick: (id: number) => void;
 }
 
 const { Meta } = Card;
 
-const Cart = ({ data }: CartProps) => {
+const Cart = ({ data, removeButtonClick }: CartProps) => {
   return (
     <>
       {data.map((item: Data, index) => (
-        <Card
-          hoverable={true}
-          style={{ height: 250, width: 300, marginTop: 5, marginBottom: 5 }}
-          key={index}
-          cover={
-            <div
-              style={{
-                marginTop: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Flex justify="center" align="center">
-                <img
-                  alt="example"
-                  src={item.image}
-                  style={{ height: 150, width: 125 }}
-                />
-              </Flex>
+        <Card key={index}>
+          <Flex justify="space-around" align="center">
+            <div>
+              <Image height={100} width={100} src={item.image}></Image>
             </div>
-          }
-        >
-          <Meta title={item.title} />
-          <p>${item.price}</p>
+            <div>
+              <Meta title={item.title}></Meta>
+              <p style={{ marginLeft: 100 }}>{item.price}</p>
+            </div>
+            <Button onClick={() => (removeButtonClick(item.id))}type="primary">Remove</Button>
+          </Flex>
         </Card>
       ))}
     </>

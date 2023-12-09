@@ -1,4 +1,4 @@
-import { Menu, Layout } from "antd";
+import { Menu } from "antd";
 import type { MenuProps } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,20 +11,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const { Header } = Layout;
-
 const items: MenuProps["items"] = [
+  {
+    label: (
+      <Link to="/">
+        <img
+          src="../images/DABB-logo-horiz-moyen.jpeg"
+          style={{ height: 50 }}
+        ></img>
+      </Link>
+    ),
+    key: "logo",
+  },
   {
     label: "Accueil",
     key: "Accueil",
     icon: <FontAwesomeIcon icon={faCircleInfo} />,
   },
   {
-    label: (
-      <Link to="products" style={{ color: "black" }}>
-        Produits
-      </Link>
-    ),
+    label: <Link to="products">Produits</Link>,
     key: "Produits",
     icon: <FontAwesomeIcon icon={faBasketShopping} />,
     children: [
@@ -100,33 +105,7 @@ const items: MenuProps["items"] = [
 const NavBar = () => {
   return (
     <>
-      <Layout>
-        <Header
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: "white",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Link to="/">
-              <img
-                src="../images/DABB-logo-horiz-moyen.jpeg"
-                style={{ height: 50 }}
-              ></img>
-            </Link>
-          </div>
-          <Menu theme="light" mode="horizontal" items={items}></Menu>
-        </Header>
-      </Layout>
+      <Menu theme="light" mode="horizontal" items={items}></Menu>
     </>
   );
 };

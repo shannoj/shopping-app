@@ -19,15 +19,38 @@ const Cart = ({ data, removeButtonClick }: CartProps) => {
     <>
       {data.map((item: Data, index) => (
         <Card key={index}>
-          <Flex justify="space-around" align="center">
+          <Flex justify="space-between" align="center">
             <div>
               <Image height={100} width={100} src={item.image}></Image>
             </div>
-            <div>
-              <Meta title={item.title}></Meta>
-              <p style={{ marginLeft: 100 }}>{item.price}</p>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <Meta style={{ marginBottom: 0 }} title={item.title}></Meta>
+                <p style={{ marginLeft: 100, height: 10, marginTop: 0}}>{item.price}</p>
+              </div>
+              <div>
+                <Button
+                  onClick={() => removeButtonClick(item.id)}
+                  type="primary"
+                  style={{ marginLeft: 20 }}
+                >
+                  Remove
+                </Button>
+              </div>
             </div>
-            <Button onClick={() => (removeButtonClick(item.id))}type="primary">Remove</Button>
           </Flex>
         </Card>
       ))}

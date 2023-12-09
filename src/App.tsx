@@ -27,7 +27,6 @@ function App() {
               type="primary"
               style={{ right: 100 }}
               icon={<ShoppingCartOutlined />}
-              badge={{ count: 1, color: "red" }}
             ></FloatButton>
           </Link>
         </Content>

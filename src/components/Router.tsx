@@ -23,13 +23,14 @@ const Router = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  /* const addToCart = (id: number) => {
+  const addToCart = (id: number) => {
     var result = data.find((obj) => {
       return obj.id === id;
     });
     setShoppingCart([...shoppingCart, result]);
     console.log(shoppingCart);
-  }; */
+  };
+
   console.log(error);
   const router = createBrowserRouter([
     {
@@ -63,7 +64,7 @@ const Router = () => {
               data={data}
               error={error}
               loading={loading}
-              //addButtonClick={addToCart}
+              addButtonClick={addToCart}
             />
           ),
         },

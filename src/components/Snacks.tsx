@@ -14,10 +14,10 @@ interface SnackProps {
   data: Data[];
   error: null | string;
   loading: boolean;
-  //addButtonClick: (id: number) => void;
+  addButtonClick: (id: number) => void;
 }
 
-const Snacks = ({ data, error, loading }: SnackProps) => {
+const Snacks = ({ data, error, loading, addButtonClick }: SnackProps) => {
   return (
     <>
       {error ? (
@@ -60,7 +60,7 @@ const Snacks = ({ data, error, loading }: SnackProps) => {
               >
                 <p>${item.price}</p>
                 <Button
-                  //onClick={() => addButtonClick(item.id)}
+                  onClick={() => addButtonClick(item.id)}
                   style={{ width: 100 }}
                   type="primary"
                   block

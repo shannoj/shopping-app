@@ -7,8 +7,30 @@ import HotDrinks from "./HotDrinks";
 import ColdDrinks from "./ColdDrinks";
 import Snacks from "./Snacks";
 import Cart from "./CartCheckout";
+import { useEffect, useState } from "react";
 
 const Router = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [shoppingCart, setShoppingCart] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setData(json))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+  /* const addToCart = (id: number) => {
+    var result = data.find((obj) => {
+      return obj.id === id;
+    });
+    setShoppingCart([...shoppingCart, result]);
+    console.log(shoppingCart);
+  }; */
+  console.log(error);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -36,7 +58,14 @@ const Router = () => {
         },
         {
           path: "products/food/snacks",
-          element: <Snacks />,
+          element: (
+            <Snacks
+              data={data}
+              error={error}
+              loading={loading}
+              //addButtonClick={addToCart}
+            />
+          ),
         },
         {
           path: "products/machines",

@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
 import { Card, Flex, Button, Result } from "antd";
 import { Skeleton } from "antd";
 
 const { Meta } = Card;
 
-const Snacks = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+interface Data {
+  image: string;
+  title: string;
+  price: string;
+  id: number;
+}
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setData(json))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
+interface SnackProps {
+  data: Data[];
+  error: null | string;
+  loading: boolean;
+  //addButtonClick: (id: number) => void;
+}
 
+const Snacks = ({ data, error, loading }: SnackProps) => {
   return (
     <>
       {error ? (
@@ -25,7 +26,7 @@ const Snacks = () => {
         <Skeleton active></Skeleton>
       ) : (
         <Flex justify="center" align="center" gap="middle" wrap="wrap">
-          {data.map((item, index) => (
+          {data.map((item: Data, index) => (
             <Card
               hoverable={true}
               style={{ height: 250, width: 300, marginTop: 5, marginBottom: 5 }}
@@ -58,7 +59,12 @@ const Snacks = () => {
                 }}
               >
                 <p>${item.price}</p>
-                <Button style={{ width: 100 }} type="primary" block>
+                <Button
+                  //onClick={() => addButtonClick(item.id)}
+                  style={{ width: 100 }}
+                  type="primary"
+                  block
+                >
                   Add to Cart
                 </Button>
               </div>

@@ -29,7 +29,11 @@ const items: MenuProps["items"] = [
     icon: <FontAwesomeIcon icon={faCircleInfo} />,
   },
   {
-    label: <Link to="products">Produits</Link>,
+    label: (
+      <Link to="products" style={{ color: "black" }}>
+        Produits
+      </Link>
+    ),
     key: "Produits",
     icon: <FontAwesomeIcon icon={faBasketShopping} />,
     children: [

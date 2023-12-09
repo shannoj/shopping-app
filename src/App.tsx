@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import Layout, { Content, Header } from "antd/es/layout/layout";
 import { FloatButton } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 
 function App() {
   return (

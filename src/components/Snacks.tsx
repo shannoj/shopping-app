@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Flex, Button, Space } from "antd";
+import { Card, Flex, Button, Result } from "antd";
 import { Skeleton } from "antd";
 
 const { Meta } = Card;
@@ -19,7 +19,9 @@ const Snacks = () => {
 
   return (
     <>
-      {loading ? (
+      {error ? (
+        <Result status="warning" title="Error Loading"></Result>
+      ) : loading ? (
         <Skeleton active></Skeleton>
       ) : (
         <Flex justify="center" align="center" gap="middle" wrap="wrap">
@@ -56,7 +58,7 @@ const Snacks = () => {
                 }}
               >
                 <p>${item.price}</p>
-                <Button style={{width: 100}} type="primary" block>
+                <Button style={{ width: 100 }} type="primary" block>
                   Add to Cart
                 </Button>
               </div>

@@ -11,16 +11,30 @@ import { useEffect, useState } from "react";
 
 const Router = () => {
   const [data, setData] = useState<any[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setData(json))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://fakestoreapi.com/products", {
+          mode: "cors",
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to fetch: ${response.status}`);
+        }
+
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        setError(String(error));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const addToCart = (id: number) => {
@@ -39,7 +53,7 @@ const Router = () => {
       children: [
         {
           path: "cart",
-          element: <Cart />,
+          element: <Cart data={shoppingCart} />,
         },
         {
           path: "products",

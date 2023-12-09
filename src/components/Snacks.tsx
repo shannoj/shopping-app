@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card, Flex } from "antd";
-import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import { Card, Flex, Button, Space } from "antd";
+import { Skeleton } from "antd";
 
 const { Meta } = Card;
 
@@ -19,35 +19,51 @@ const Snacks = () => {
 
   return (
     <>
-      <Flex justify="center" align="center" gap="middle" wrap="wrap">
-        {data.map((item, index) => (
-          <Card
-            hoverable={true}
-            style={{ height: 275, width: 300, marginTop: 5, marginBottom: 5}}
-            key={index}
-            cover={
+      {loading ? (
+        <Skeleton active></Skeleton>
+      ) : (
+        <Flex justify="center" align="center" gap="middle" wrap="wrap">
+          {data.map((item, index) => (
+            <Card
+              hoverable={true}
+              style={{ height: 250, width: 300, marginTop: 5, marginBottom: 5 }}
+              key={index}
+              cover={
+                <div
+                  style={{
+                    marginTop: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Flex justify="center" align="center">
+                    <img
+                      alt="example"
+                      src={item.image}
+                      style={{ height: 150, width: 125 }}
+                    />
+                  </Flex>
+                </div>
+              }
+            >
+              <Meta title={item.title} />
               <div
                 style={{
-                  marginTop: 5,
-                  justifyContent: "center",
+                  display: "flex",
                   alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
                 }}
               >
-                <Flex justify="center" align="center">
-                  <img
-                    alt="example"
-                    src={item.image}
-                    style={{ height: 150, width: 125 }}
-                  />
-                </Flex>
+                <p>${item.price}</p>
+                <Button style={{width: 100}} type="primary" block>
+                  Add to Cart
+                </Button>
               </div>
-            }
-          >
-            <Meta title={item.title} />
-            <p>${item.price}</p>
-          </Card>
-        ))}
-      </Flex>
+            </Card>
+          ))}
+        </Flex>
+      )}
     </>
   );
 };

@@ -17,7 +17,7 @@ const items: MenuProps["items"] = [
       <Link to="/">
         <img
           src="../images/DABB-logo-horiz-moyen.jpeg"
-          style={{ height: 50 }}
+          style={{ height: 40 }}
         ></img>
       </Link>
     ),
@@ -105,7 +105,16 @@ const items: MenuProps["items"] = [
 const NavBar = () => {
   return (
     <>
-      <Menu theme="light" mode="horizontal" items={items}></Menu>
+      <Menu
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        theme="light"
+        mode="horizontal"
+        items={items}
+      ></Menu>
     </>
   );
 };

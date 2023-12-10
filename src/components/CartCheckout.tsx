@@ -21,7 +21,6 @@ interface CartProps {
 
 const { Meta } = Card;
 
-const { Title } = Typography;
 const { Text } = Typography;
 
 const Cart = ({

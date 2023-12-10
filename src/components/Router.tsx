@@ -15,6 +15,14 @@ const Router = () => {
   const [loading, setLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState<any[]>([]);
 
+  const isEmpty = () => {
+    if (shoppingCart.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -64,7 +72,7 @@ const Router = () => {
         {
           path: "cart",
           element: (
-            <Cart data={shoppingCart} removeButtonClick={removeFromCart} />
+            <Cart data={shoppingCart} removeButtonClick={removeFromCart} empty={isEmpty}/>
           ),
         },
         {

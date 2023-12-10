@@ -1,4 +1,7 @@
-import { Card, Flex, Image, Button } from "antd";
+import { Card, Flex, Image, Button, Empty } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Data {
   image: string;
@@ -10,13 +13,15 @@ interface Data {
 interface CartProps {
   data: Data[];
   removeButtonClick: (id: number) => void;
+  empty: () => boolean;
 }
 
 const { Meta } = Card;
 
-const Cart = ({ data, removeButtonClick }: CartProps) => {
+const Cart = ({ data, removeButtonClick, empty }: CartProps) => {
   return (
     <>
+      {empty() && <Empty style={{margin: 300}}image={<FontAwesomeIcon icon={faCartShopping} />} imageStyle={{height: 100}} description={<span>No Items In Cart</span>}></Empty>}
       {data.map((item: Data, index) => (
         <Card key={index}>
           <Flex justify="space-between" align="center">
@@ -39,7 +44,9 @@ const Cart = ({ data, removeButtonClick }: CartProps) => {
                 }}
               >
                 <Meta style={{ marginBottom: 0 }} title={item.title}></Meta>
-                <p style={{ marginLeft: 100, height: 10, marginTop: 0}}>{item.price}</p>
+                <p style={{ marginLeft: 100, height: 10, marginTop: 0 }}>
+                  {item.price}
+                </p>
               </div>
               <div>
                 <Button

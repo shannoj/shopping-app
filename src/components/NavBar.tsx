@@ -113,7 +113,7 @@ const NavBar = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
         }}
         theme="light"
         mode="horizontal"

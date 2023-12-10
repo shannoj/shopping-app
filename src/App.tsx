@@ -11,10 +11,12 @@ function App() {
         <Header
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             backgroundColor: "white",
             width: "100%",
+            margin: "0",
+            padding: "0"
           }}
         >
           <NavBar></NavBar>

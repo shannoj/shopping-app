@@ -1,5 +1,4 @@
-import { Card, Flex, Image, Button, Empty } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Card, Flex, Image, Button, Empty, InputNumber } from "antd";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -21,7 +20,14 @@ const { Meta } = Card;
 const Cart = ({ data, removeButtonClick, empty }: CartProps) => {
   return (
     <>
-      {empty() && <Empty style={{margin: 300}}image={<FontAwesomeIcon icon={faCartShopping} />} imageStyle={{height: 100}} description={<span>No Items In Cart</span>}></Empty>}
+      {empty() && (
+        <Empty
+          style={{ margin: 300 }}
+          image={<FontAwesomeIcon icon={faCartShopping} />}
+          imageStyle={{ height: 100 }}
+          description={<span>No Items In Cart</span>}
+        ></Empty>
+      )}
       {data.map((item: Data, index) => (
         <Card key={index}>
           <Flex justify="space-between" align="center">
@@ -48,11 +54,18 @@ const Cart = ({ data, removeButtonClick, empty }: CartProps) => {
                   {item.price}
                 </p>
               </div>
+              <div style={{ marginRight: 5 }}>
+                <InputNumber
+                  style={{ width: 175, marginLeft: 10, marginRight: 10 }}
+                  addonBefore={<div className="cursor-auto">-</div>}
+                  addonAfter={<div className="cursor-pointer">+</div>}
+                  defaultValue="1"
+                ></InputNumber>
+              </div>
               <div>
                 <Button
                   onClick={() => removeButtonClick(item.id)}
                   type="primary"
-                  style={{ marginLeft: 20 }}
                 >
                   Remove
                 </Button>

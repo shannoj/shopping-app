@@ -16,6 +16,7 @@ interface CartProps {
   empty: () => boolean;
   addOne: (id: number) => void;
   removeOne: (id: number) => void;
+  total: number;
 }
 
 const { Meta } = Card;
@@ -26,6 +27,7 @@ const Cart = ({
   empty,
   addOne,
   removeOne,
+  total
 }: CartProps) => {
   return (
     <>
@@ -99,6 +101,7 @@ const Cart = ({
           </Flex>
         </Card>
       ))}
+      <div>{total}</div>
     </>
   );
 };

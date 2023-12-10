@@ -14,6 +14,7 @@ const Router = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState<any[]>([]);
+  var [cartTotal, setCartTotal] = useState(0);
 
   const isEmpty = () => {
     if (shoppingCart.length == 0) {
@@ -51,7 +52,7 @@ const Router = () => {
     });
     result.quantity = 1;
     setShoppingCart([...shoppingCart, result]);
-    console.log(shoppingCart);
+    setCartTotal((prevTotal) => prevTotal + result.price);
   };
 
   const addOne = (id: number) => {
@@ -62,6 +63,12 @@ const Router = () => {
         }
         return item;
       });
+      // Calculate the updated total based on the changed quantity
+      const updatedTotal = updatedCart.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+
+      setCartTotal(updatedTotal);
       return updatedCart;
     });
   };
@@ -72,10 +79,17 @@ const Router = () => {
         if (item.id === id) {
           if (item.quantity != 0) {
             return { ...item, quantity: item.quantity - 1 };
-          } 
+          }
         }
         return item;
       });
+      // Calculate the updated total based on the changed quantity
+      const updatedTotal = updatedCart.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+
+      setCartTotal(updatedTotal);
+
       return updatedCart;
     });
   };
@@ -84,10 +98,15 @@ const Router = () => {
     // Use filter to create a new array without the item with the specified id
     const updatedCart = shoppingCart.filter((obj) => obj.id !== id);
 
+    // Calculate the updated total based on the changed quantity
+    const updatedTotal = updatedCart.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+
+    setCartTotal(updatedTotal);
+
     // Set the new array as the shoppingCart state
     setShoppingCart(updatedCart);
-
-    console.log(updatedCart);
   };
 
   console.log(error);
@@ -105,6 +124,7 @@ const Router = () => {
               data={shoppingCart}
               removeButtonClick={removeFromCart}
               empty={isEmpty}
+              total={cartTotal}
             />
           ),
         },

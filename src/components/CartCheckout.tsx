@@ -1,4 +1,4 @@
-import { Card, Flex, Image, Button, Empty, Input } from "antd";
+import { Card, Flex, Image, Button, Empty, Input, Typography } from "antd";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -21,13 +21,16 @@ interface CartProps {
 
 const { Meta } = Card;
 
+const { Title } = Typography;
+const { Text } = Typography;
+
 const Cart = ({
   data,
   removeButtonClick,
   empty,
   addOne,
   removeOne,
-  total
+  total,
 }: CartProps) => {
   return (
     <>
@@ -40,7 +43,7 @@ const Cart = ({
         ></Empty>
       )}
       {data.map((item: Data, index) => (
-        <Card key={index}>
+        <Card className="mt-5 ml-2 mr-2" key={index}>
           <Flex justify="space-between" align="center">
             <div>
               <Image height={100} width={100} src={item.image}></Image>
@@ -49,20 +52,22 @@ const Cart = ({
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "space-around",
+                width: "50%"
               }}
             >
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  justifyContent: "flex-end",
                   flexDirection: "column",
+                  marginRight: 20
                 }}
               >
                 <Meta style={{ marginBottom: 0 }} title={item.title}></Meta>
-                <p style={{ marginLeft: 100, height: 10, marginTop: 0 }}>
-                  {item.price}
+                <p style={{ display: "flex", alignItems:"center", justifyContent:"flex-end", width:"100%", height: 10, marginTop: 2 }}>
+                  ${item.price}
                 </p>
               </div>
               <div style={{ marginRight: 5 }}>
@@ -101,7 +106,10 @@ const Cart = ({
           </Flex>
         </Card>
       ))}
-      <div>{total}</div>
+      <Flex className="pt-10 pb-10" justify="flex-end" align="center">
+        <Text className="pr-1">Total:</Text>
+        <Text className="pr-3">${total.toFixed(2)}</Text>
+      </Flex>
     </>
   );
 };

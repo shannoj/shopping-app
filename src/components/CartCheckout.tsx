@@ -7,7 +7,7 @@ interface Data {
   title: string;
   price: string;
   id: number;
-  quantity: number
+  quantity: number;
 }
 
 interface CartProps {
@@ -15,12 +15,18 @@ interface CartProps {
   removeButtonClick: (id: number) => void;
   empty: () => boolean;
   addOne: (id: number) => void;
-  //removeOne: () => void;
+  removeOne: (id: number) => void;
 }
 
 const { Meta } = Card;
 
-const Cart = ({ data, removeButtonClick, empty, addOne}: CartProps) => {
+const Cart = ({
+  data,
+  removeButtonClick,
+  empty,
+  addOne,
+  removeOne,
+}: CartProps) => {
   return (
     <>
       {empty() && (
@@ -61,9 +67,21 @@ const Cart = ({ data, removeButtonClick, empty, addOne}: CartProps) => {
                 <Input
                   style={{ width: 175, marginLeft: 10, marginRight: 10 }}
                   addonBefore={
-                    <div className="cursor-pointer">-</div>
+                    <div
+                      onClick={() => removeOne(item.id)}
+                      className="cursor-pointer"
+                    >
+                      -
+                    </div>
                   }
-                  addonAfter={<div onClick={()=>addOne(item.id)} className="cursor-pointer">+</div>}
+                  addonAfter={
+                    <div
+                      onClick={() => addOne(item.id)}
+                      className="cursor-pointer"
+                    >
+                      +
+                    </div>
+                  }
                   defaultValue="1"
                   value={item.quantity}
                 ></Input>

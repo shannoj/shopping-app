@@ -14,7 +14,6 @@ const Router = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState<any[]>([]);
-  const [product, setProduct] = useState([]);
 
   const isEmpty = () => {
     if (shoppingCart.length == 0) {
@@ -67,6 +66,20 @@ const Router = () => {
     });
   };
 
+  const removeOne = (id: number) => {
+    setShoppingCart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
+        if (item.id === id) {
+          if (item.quantity != 0) {
+            return { ...item, quantity: item.quantity - 1 };
+          } 
+        }
+        return item;
+      });
+      return updatedCart;
+    });
+  };
+
   const removeFromCart = (id: number) => {
     // Use filter to create a new array without the item with the specified id
     const updatedCart = shoppingCart.filter((obj) => obj.id !== id);
@@ -88,6 +101,7 @@ const Router = () => {
           element: (
             <Cart
               addOne={addOne}
+              removeOne={removeOne}
               data={shoppingCart}
               removeButtonClick={removeFromCart}
               empty={isEmpty}

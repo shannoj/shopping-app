@@ -14,6 +14,7 @@ const Router = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [shoppingCart, setShoppingCart] = useState<any[]>([]);
+  const [product, setProduct] = useState([]);
 
   const isEmpty = () => {
     if (shoppingCart.length == 0) {
@@ -21,7 +22,7 @@ const Router = () => {
     } else {
       return false;
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,8 +50,21 @@ const Router = () => {
     var result = data.find((obj) => {
       return obj.id === id;
     });
+    result.quantity = 1;
     setShoppingCart([...shoppingCart, result]);
     console.log(shoppingCart);
+  };
+
+  const addOne = (id: number) => {
+    setShoppingCart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      return updatedCart;
+    });
   };
 
   const removeFromCart = (id: number) => {
@@ -72,7 +86,12 @@ const Router = () => {
         {
           path: "cart",
           element: (
-            <Cart data={shoppingCart} removeButtonClick={removeFromCart} empty={isEmpty}/>
+            <Cart
+              addOne={addOne}
+              data={shoppingCart}
+              removeButtonClick={removeFromCart}
+              empty={isEmpty}
+            />
           ),
         },
         {

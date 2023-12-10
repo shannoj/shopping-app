@@ -1,4 +1,4 @@
-import { Card, Flex, Image, Button, Empty, InputNumber } from "antd";
+import { Card, Flex, Image, Button, Empty, Input } from "antd";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -7,17 +7,20 @@ interface Data {
   title: string;
   price: string;
   id: number;
+  quantity: number
 }
 
 interface CartProps {
   data: Data[];
   removeButtonClick: (id: number) => void;
   empty: () => boolean;
+  addOne: (id: number) => void;
+  //removeOne: () => void;
 }
 
 const { Meta } = Card;
 
-const Cart = ({ data, removeButtonClick, empty }: CartProps) => {
+const Cart = ({ data, removeButtonClick, empty, addOne}: CartProps) => {
   return (
     <>
       {empty() && (
@@ -55,17 +58,21 @@ const Cart = ({ data, removeButtonClick, empty }: CartProps) => {
                 </p>
               </div>
               <div style={{ marginRight: 5 }}>
-                <InputNumber
+                <Input
                   style={{ width: 175, marginLeft: 10, marginRight: 10 }}
-                  addonBefore={<div className="cursor-auto">-</div>}
-                  addonAfter={<div className="cursor-pointer">+</div>}
+                  addonBefore={
+                    <div className="cursor-pointer">-</div>
+                  }
+                  addonAfter={<div onClick={()=>addOne(item.id)} className="cursor-pointer">+</div>}
                   defaultValue="1"
-                ></InputNumber>
+                  value={item.quantity}
+                ></Input>
               </div>
               <div>
                 <Button
                   onClick={() => removeButtonClick(item.id)}
                   type="primary"
+                  danger
                 >
                   Remove
                 </Button>

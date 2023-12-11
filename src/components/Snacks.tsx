@@ -58,7 +58,7 @@ const Snacks = ({ data, error, loading, addButtonClick }: SnackProps) => {
                   width: "100%",
                 }}
               >
-                <p>${item.price}</p>
+                <p>${parseInt(item.price).toFixed(2)}</p>
                 <Button
                   onClick={() => addButtonClick(item.id)}
                   style={{ width: 100 }}

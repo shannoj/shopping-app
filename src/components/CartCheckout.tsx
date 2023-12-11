@@ -83,7 +83,7 @@ const Cart = ({
                     marginTop: 2,
                   }}
                 >
-                  ${item.price}
+                  ${parseInt(item.price).toFixed(2)}
                 </p>
               </div>
               <div style={{ marginRight: 5 }}>

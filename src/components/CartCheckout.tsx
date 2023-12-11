@@ -51,8 +51,8 @@ const Cart = ({
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-around",
-                width: "50%",
+                justifyContent: "flex-end",
+                width: "100%",
               }}
             >
               <div
@@ -64,7 +64,15 @@ const Cart = ({
                   marginRight: 20,
                 }}
               >
-                <Meta style={{ marginBottom: 0 }} title={item.title}></Meta>
+                <Meta
+                  className="overflow-x-auto w-5/5"
+                  style={{
+                    marginBottom: 0,
+                    display: "flex",
+                    justifyContent: "flex-start",
+                  }}
+                  title={item.title}
+                ></Meta>
                 <p
                   style={{
                     display: "flex",

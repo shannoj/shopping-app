@@ -52,7 +52,7 @@ const Cart = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-around",
-                width: "50%"
+                width: "50%",
               }}
             >
               <div
@@ -61,11 +61,20 @@ const Cart = ({
                   alignItems: "center",
                   justifyContent: "flex-end",
                   flexDirection: "column",
-                  marginRight: 20
+                  marginRight: 20,
                 }}
               >
                 <Meta style={{ marginBottom: 0 }} title={item.title}></Meta>
-                <p style={{ display: "flex", alignItems:"center", justifyContent:"flex-end", width:"100%", height: 10, marginTop: 2 }}>
+                <p
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    width: "100%",
+                    height: 10,
+                    marginTop: 2,
+                  }}
+                >
                   ${item.price}
                 </p>
               </div>
@@ -105,10 +114,14 @@ const Cart = ({
           </Flex>
         </Card>
       ))}
-      <Flex className="pt-10 pb-10" justify="flex-end" align="center">
-        <Text className="pr-1">Total:</Text>
-        <Text className="pr-3">${total.toFixed(2)}</Text>
-      </Flex>
+      {empty() ? (
+        <div></div>
+      ) : (
+        <Flex className="pt-10 pb-10" justify="flex-end" align="center">
+          <Text className="pr-1">Total:</Text>
+          <Text className="pr-3">${total.toFixed(2)}</Text>
+        </Flex>
+      )}
     </>
   );
 };

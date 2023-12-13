@@ -1,23 +1,17 @@
 import { Card, Flex, Button, Result } from "antd";
 import { Skeleton } from "antd";
+import { Data } from "../types";
 
 const { Meta } = Card;
 
-interface Data {
-  image: string;
-  title: string;
-  price: string;
-  id: number;
-}
-
 interface SnackProps {
-  data: Data[];
   error: null | string;
   loading: boolean;
   addButtonClick: (id: number) => void;
+  data: Data[];
 }
 
-const Snacks = ({ data, error, loading, addButtonClick }: SnackProps) => {
+const Snacks = ({data, error, loading, addButtonClick }: SnackProps) => {
   return (
     <>
       {error ? (

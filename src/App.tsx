@@ -1,10 +1,13 @@
 import NavBar from "./components/NavBar";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Layout, { Content, Header } from "antd/es/layout/layout";
-import { FloatButton } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { ReactNode } from "react";
 
-function App() {
+interface AppProps {
+  children: ReactNode
+}
+function App({children}: AppProps) {
+
   return (
     <>
       <Layout>
@@ -23,14 +26,7 @@ function App() {
         </Header>
         <Content>
           <Outlet></Outlet>
-          <Link to="cart">
-            <FloatButton
-              shape="circle"
-              type="primary"
-              style={{ right: 100 }}
-              icon={<ShoppingCartOutlined />}
-            ></FloatButton>
-          </Link>
+            {children}
         </Content>
       </Layout>
     </>

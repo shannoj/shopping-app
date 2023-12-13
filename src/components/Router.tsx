@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import App from "../App";
 import Products from "./Products";
 import Food from "./Food";
@@ -8,6 +8,9 @@ import ColdDrinks from "./ColdDrinks";
 import Snacks from "./Snacks";
 import Cart from "./CartCheckout";
 import { useEffect, useState } from "react";
+import { FloatButton } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { count } from "console";
 
 const Router = () => {
   const [data, setData] = useState<any[]>([]);
@@ -35,6 +38,7 @@ const Router = () => {
         }
 
         const json = await response.json();
+        console.log(json);
         setData(json);
       } catch (error) {
         setError(String(error));
@@ -113,7 +117,21 @@ const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />,
+      element: (
+        <App
+          children={
+            <Link to="cart">
+              <FloatButton
+                shape="circle"
+                type="primary"
+                style={{ right: 100 }}
+                icon={<ShoppingCartOutlined />}
+                badge={{ count: shoppingCart.length }}
+              ></FloatButton>
+            </Link>
+          }
+        ></App>
+      ),
       children: [
         {
           path: "cart",

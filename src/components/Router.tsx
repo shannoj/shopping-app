@@ -10,7 +10,7 @@ import Cart from "./CartCheckout";
 import { useEffect, useState } from "react";
 import { FloatButton } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { count } from "console";
+import { v4 as uuidv4 } from "uuid";
 
 const Router = () => {
   const [data, setData] = useState<any[]>([]);
@@ -54,9 +54,16 @@ const Router = () => {
     var result = data.find((obj) => {
       return obj.id === id;
     });
+
+    // Clone the object to create a new instance
+    result = { ...result };
+
     result.quantity = 1;
+    result.uniqueId = uuidv4();
+
     setShoppingCart([...shoppingCart, result]);
     setCartTotal((prevTotal) => prevTotal + result.price);
+    console.log(shoppingCart);
   };
 
   const addOne = (id: number) => {
@@ -77,10 +84,10 @@ const Router = () => {
     });
   };
 
-  const removeOne = (id: number) => {
+  const removeOne = (id: string) => {
     setShoppingCart((prevCart) => {
       const updatedCart = prevCart.map((item) => {
-        if (item.id === id) {
+        if (item.uniqueId === id) {
           if (item.quantity != 0) {
             return { ...item, quantity: item.quantity - 1 };
           }
@@ -98,9 +105,9 @@ const Router = () => {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     // Use filter to create a new array without the item with the specified id
-    const updatedCart = shoppingCart.filter((obj) => obj.id !== id);
+    const updatedCart = shoppingCart.filter((obj) => obj.uniqueId !== id);
 
     // Calculate the updated total based on the changed quantity
     const updatedTotal = updatedCart.reduce((total, item) => {

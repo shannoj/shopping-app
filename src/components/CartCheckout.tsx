@@ -8,14 +8,15 @@ interface Data {
   price: string;
   id: number;
   quantity: number;
+  uniqueId: string;
 }
 
 interface CartProps {
   data: Data[];
-  removeButtonClick: (id: number) => void;
+  removeButtonClick: (id: string) => void;
   empty: () => boolean;
   addOne: (id: number) => void;
-  removeOne: (id: number) => void;
+  removeOne: (id: string) => void;
   total: number;
 }
 
@@ -91,7 +92,7 @@ const Cart = ({
                   style={{ width: 175, marginLeft: 10, marginRight: 10 }}
                   addonBefore={
                     <div
-                      onClick={() => removeOne(item.id)}
+                      onClick={() => removeOne(item.uniqueId)}
                       className="cursor-pointer"
                     >
                       -
@@ -111,7 +112,7 @@ const Cart = ({
               </div>
               <div>
                 <Button
-                  onClick={() => removeButtonClick(item.id)}
+                  onClick={() => removeButtonClick(item.uniqueId)}
                   type="primary"
                   danger
                 >
